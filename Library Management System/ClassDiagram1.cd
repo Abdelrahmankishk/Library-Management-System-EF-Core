@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Library_Management_System.Models.Author" Collapsed="true">
+    <Position X="2" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAACAAg=</HashCode>
+      <FileName>Models\Author.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Library_Management_System.Models.BaseEntity" Collapsed="true">
+    <Position X="7.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\BaseEntity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Library_Management_System.Models.Book" Collapsed="true">
+    <Position X="11" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQAAAEAAAAAIQAAAAAAAAAAQAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Book.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Library_Management_System.Models.Category" Collapsed="true">
+    <Position X="4.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Category.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Library_Management_System.Models.Fine" Collapsed="true">
+    <Position X="8.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEBAAAAAAAAAAAAACAAAAAAAAABAAAAAAAAAA=</HashCode>
+      <FileName>Models\Fine.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Library_Management_System.Models.Loan" Collapsed="true">
+    <Position X="13.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Loan.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Library_Management_System.Models.Member" Collapsed="true">
+    <Position X="6.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEACIAAAAAAAAAQAQAAAAAAAACAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Member.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="Library_Management_System.Models.Enums.FineStatus" Collapsed="true">
+    <Position X="5.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAA=</HashCode>
+      <FileName>Models\Enums\FineStatus.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Library_Management_System.Models.Enums.LoanStatus" Collapsed="true">
+    <Position X="7.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAACAAAAAAhAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Enums\LoanStatus.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Library_Management_System.Models.Enums.MemberStatus" Collapsed="true">
+    <Position X="9.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAABAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Enums\MemberStatus.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
