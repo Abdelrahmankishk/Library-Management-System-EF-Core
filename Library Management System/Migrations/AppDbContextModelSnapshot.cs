@@ -106,6 +106,29 @@ namespace Library_Management_System.Migrations
                     b.ToTable("Categories");
                 });
 
+            modelBuilder.Entity("Library_Management_System.Models.Loan", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("LoanDate")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("getdate()");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasMaxLength(8)
+                        .HasColumnType("varchar");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Loans");
+                });
+
             modelBuilder.Entity("Library_Management_System.Models.Member", b =>
                 {
                     b.Property<int>("Id")
