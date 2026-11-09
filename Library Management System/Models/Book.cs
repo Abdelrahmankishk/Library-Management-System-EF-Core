@@ -13,4 +13,6 @@ public class Book : BaseEntity
     public int PublicationYear { get; set; }
     public int AvailableCopies { get; set; }
     public int TotalCopies { get; set; }
+    public int AuthorId { get; set; }
+    public Author Author { get; set; } = default!;
 }

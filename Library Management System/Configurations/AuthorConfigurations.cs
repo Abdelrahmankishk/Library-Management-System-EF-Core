@@ -20,5 +20,11 @@ public class AuthorConfigurations : IEntityTypeConfiguration<Author>
         builder.Property(X => X.LastName)
                .HasColumnType("varchar")
                .HasMaxLength(20);
+
+        #region Author-Book Relationship
+        builder.HasMany(x => x.Books)
+            .WithOne(x => x.Author)
+            .HasForeignKey(x => x.AuthorId);
+        #endregion
     }
 }

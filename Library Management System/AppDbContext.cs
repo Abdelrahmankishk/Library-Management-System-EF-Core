@@ -25,5 +25,6 @@ namespace Library_Management_System
         public DbSet<Author> Authors { get; set; }
         public DbSet<Member> Members { get; set; }
         public DbSet<Loan> Loans { get; set; }
+        public DbSet<Fine> Fines { get; set; }
     }
 }
