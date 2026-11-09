@@ -13,5 +13,6 @@ public class Fine: BaseEntity
     public DateTime IssuedDate { get; set; }
     public DateTime PaidDate { get; set; }
     public FineStatus Status { get; set; }
-
+    public int LoanId { get; set; }
+    public Loan Loan { get; set; } = default!;
 }

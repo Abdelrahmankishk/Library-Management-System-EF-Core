@@ -23,5 +23,12 @@ public class FineConfigurations : IEntityTypeConfiguration<Fine>
                    .HasConversion<string>()         // store Pending,Paid not 0/1
                    .HasColumnType("varchar")
                    .HasMaxLength(7);
+
+        #region Loan Fine Relationship
+        builder.HasOne(f => f.Loan)
+            .WithOne(l => l.Fines)
+            .HasForeignKey<Fine>(f => f.LoanId)
+            .OnDelete(DeleteBehavior.Cascade);
+        #endregion
     }
 }
