@@ -30,5 +30,11 @@ public class BookConfigurations : IEntityTypeConfiguration<Book>
                 "[AvailableCopies] >= 0 AND [AvailableCopies] <= [TotalCopies]");
         });
 
+        #region Category Book Relationship
+        builder.HasOne(b => b.Category)
+               .WithMany(c => c.Books)
+               .HasForeignKey(b => b.CategoryId)
+               .OnDelete(DeleteBehavior.Restrict);
+        #endregion
     }
 }

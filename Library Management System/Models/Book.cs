@@ -15,4 +15,6 @@ public class Book : BaseEntity
     public int TotalCopies { get; set; }
     public int AuthorId { get; set; }
     public Author Author { get; set; } = default!;
+    public int CategoryId { get; set; }
+    public Category Category { get; set; } = default!;
 }
