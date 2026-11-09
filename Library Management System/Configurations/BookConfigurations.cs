@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Library_Management_System.Migrations;
+namespace Library_Management_System.Configurations;
 
 public class BookConfigurations : IEntityTypeConfiguration<Book>
 {
@@ -16,7 +16,7 @@ public class BookConfigurations : IEntityTypeConfiguration<Book>
         builder.HasKey(b => b.Id);
 
         builder.Property(b => b.Title)
-               .IsRequired()
+               .HasColumnType("varchar")
                .HasMaxLength(50);                 
 
         builder.Property(b => b.Price)

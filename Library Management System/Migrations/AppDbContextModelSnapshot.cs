@@ -42,7 +42,7 @@ namespace Library_Management_System.Migrations
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("varchar");
 
                     b.Property<int>("TotalCopies")
                         .HasColumnType("int");
@@ -55,6 +55,28 @@ namespace Library_Management_System.Migrations
 
                             t.HasCheckConstraint("CK_Books_PublicationYear", "[PublicationYear] >= 1950 AND [PublicationYear] <= YEAR(GETDATE())");
                         });
+                });
+
+            modelBuilder.Entity("Library_Management_System.Models.Category", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("varchar");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Category");
                 });
 #pragma warning restore 612, 618
         }
