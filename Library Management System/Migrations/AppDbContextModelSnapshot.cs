@@ -133,6 +133,9 @@ namespace Library_Management_System.Migrations
                         .HasColumnType("datetime2")
                         .HasDefaultValueSql("GETDATE()");
 
+                    b.Property<int>("LoanId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("PaidDate")
                         .HasColumnType("datetime2");
 
@@ -142,6 +145,9 @@ namespace Library_Management_System.Migrations
                         .HasColumnType("varchar");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("LoanId")
+                        .IsUnique();
 
                     b.ToTable("Fines");
                 });
@@ -217,6 +223,32 @@ namespace Library_Management_System.Migrations
                         });
                 });
 
+            modelBuilder.Entity("Library_Management_System.Models.MemberLoan", b =>
+                {
+                    b.Property<int>("LoanId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("BookId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("MemberId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("DueDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("ReturnDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("LoanId", "BookId", "MemberId");
+
+                    b.HasIndex("BookId");
+
+                    b.HasIndex("MemberId");
+
+                    b.ToTable("MemberLoan");
+                });
+
             modelBuilder.Entity("Library_Management_System.Models.Book", b =>
                 {
                     b.HasOne("Library_Management_System.Models.Author", "Author")
@@ -236,6 +268,44 @@ namespace Library_Management_System.Migrations
                     b.Navigation("Category");
                 });
 
+            modelBuilder.Entity("Library_Management_System.Models.Fine", b =>
+                {
+                    b.HasOne("Library_Management_System.Models.Loan", "Loan")
+                        .WithOne("Fines")
+                        .HasForeignKey("Library_Management_System.Models.Fine", "LoanId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Loan");
+                });
+
+            modelBuilder.Entity("Library_Management_System.Models.MemberLoan", b =>
+                {
+                    b.HasOne("Library_Management_System.Models.Book", "Book")
+                        .WithMany()
+                        .HasForeignKey("BookId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Library_Management_System.Models.Loan", "Loan")
+                        .WithMany()
+                        .HasForeignKey("LoanId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Library_Management_System.Models.Member", "Member")
+                        .WithMany()
+                        .HasForeignKey("MemberId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Book");
+
+                    b.Navigation("Loan");
+
+                    b.Navigation("Member");
+                });
+
             modelBuilder.Entity("Library_Management_System.Models.Author", b =>
                 {
                     b.Navigation("Books");
@@ -244,6 +314,11 @@ namespace Library_Management_System.Migrations
             modelBuilder.Entity("Library_Management_System.Models.Category", b =>
                 {
                     b.Navigation("Books");
+                });
+
+            modelBuilder.Entity("Library_Management_System.Models.Loan", b =>
+                {
+                    b.Navigation("Fines");
                 });
 #pragma warning restore 612, 618
         }
