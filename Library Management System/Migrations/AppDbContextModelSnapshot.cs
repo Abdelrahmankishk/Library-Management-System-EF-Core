@@ -105,6 +105,54 @@ namespace Library_Management_System.Migrations
 
                     b.ToTable("Categories");
                 });
+
+            modelBuilder.Entity("Library_Management_System.Models.Member", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar");
+
+                    b.Property<DateTime>("MembershipDate")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("GETDATE()");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("varchar");
+
+                    b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasMaxLength(11)
+                        .HasColumnType("varchar");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasMaxLength(9)
+                        .HasColumnType("varchar");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Members", t =>
+                        {
+                            t.HasCheckConstraint("CK_Members_Email", "[Email] LIKE '_%@_%._%' AND [Email] NOT LIKE '% %'");
+
+                            t.HasCheckConstraint("CK_Members_PhoneNumber", "[PhoneNumber] LIKE '01[0125][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]'");
+                        });
+                });
 #pragma warning restore 612, 618
         }
     }
