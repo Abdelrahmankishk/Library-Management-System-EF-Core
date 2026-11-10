@@ -20,5 +20,10 @@ public class LoanConfigurations : IEntityTypeConfiguration<Loan>
                    .HasConversion<string>()         // store Borrowed,Returned,Overdue, not 0/1
                    .HasColumnType("varchar")
                    .HasMaxLength(8);
+
+        builder.HasMany(l => l.MemberLoans)
+            .WithOne(ml => ml.Loan)
+            .HasForeignKey(ml => ml.LoanId)
+            .OnDelete(DeleteBehavior.Cascade);
     }
 }

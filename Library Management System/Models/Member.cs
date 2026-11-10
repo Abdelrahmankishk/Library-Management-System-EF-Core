@@ -15,4 +15,6 @@ public class Member: BaseEntity
     public string Address { get; set; } = null!;
     public DateTime MembershipDate { get; set; }
     public MemberStatus Status { get; set; }
+
+    public ICollection<MemberLoan> MemberLoans { get; set; } = new HashSet<MemberLoan>();
 }

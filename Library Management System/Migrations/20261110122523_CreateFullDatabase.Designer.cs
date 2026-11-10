@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Library_Management_System.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20261109172233_AuthorBookRelationship")]
-    partial class AuthorBookRelationship
+    [Migration("20261110122523_CreateFullDatabase")]
+    partial class CreateFullDatabase
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -36,7 +36,7 @@ namespace Library_Management_System.Migrations
                     b.Property<DateTime>("DateOfBirth")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("FristName")
+                    b.Property<string>("FirstName")
                         .IsRequired()
                         .HasMaxLength(20)
                         .HasColumnType("varchar");
@@ -65,6 +65,9 @@ namespace Library_Management_System.Migrations
                     b.Property<int>("AvailableCopies")
                         .HasColumnType("int");
 
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
+
                     b.Property<decimal>("Price")
                         .HasPrecision(6, 2)
                         .HasColumnType("decimal(6,2)");
@@ -83,6 +86,8 @@ namespace Library_Management_System.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("AuthorId");
+
+                    b.HasIndex("CategoryId");
 
                     b.ToTable("Books", t =>
                         {
@@ -131,6 +136,9 @@ namespace Library_Management_System.Migrations
                         .HasColumnType("datetime2")
                         .HasDefaultValueSql("GETDATE()");
 
+                    b.Property<int>("LoanId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("PaidDate")
                         .HasColumnType("datetime2");
 
@@ -140,6 +148,9 @@ namespace Library_Management_System.Migrations
                         .HasColumnType("varchar");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("LoanId")
+                        .IsUnique();
 
                     b.ToTable("Fines");
                 });
@@ -215,6 +226,32 @@ namespace Library_Management_System.Migrations
                         });
                 });
 
+            modelBuilder.Entity("Library_Management_System.Models.MemberLoan", b =>
+                {
+                    b.Property<int>("LoanId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("BookId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("MemberId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("DueDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("ReturnDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("LoanId", "BookId", "MemberId");
+
+                    b.HasIndex("BookId");
+
+                    b.HasIndex("MemberId");
+
+                    b.ToTable("MembersLoans");
+                });
+
             modelBuilder.Entity("Library_Management_System.Models.Book", b =>
                 {
                     b.HasOne("Library_Management_System.Models.Author", "Author")
@@ -223,12 +260,80 @@ namespace Library_Management_System.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Library_Management_System.Models.Category", "Category")
+                        .WithMany("Books")
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
                     b.Navigation("Author");
+
+                    b.Navigation("Category");
+                });
+
+            modelBuilder.Entity("Library_Management_System.Models.Fine", b =>
+                {
+                    b.HasOne("Library_Management_System.Models.Loan", "Loan")
+                        .WithOne("Fines")
+                        .HasForeignKey("Library_Management_System.Models.Fine", "LoanId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Loan");
+                });
+
+            modelBuilder.Entity("Library_Management_System.Models.MemberLoan", b =>
+                {
+                    b.HasOne("Library_Management_System.Models.Book", "Book")
+                        .WithMany("MemberLoans")
+                        .HasForeignKey("BookId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Library_Management_System.Models.Loan", "Loan")
+                        .WithMany("MemberLoans")
+                        .HasForeignKey("LoanId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Library_Management_System.Models.Member", "Member")
+                        .WithMany("MemberLoans")
+                        .HasForeignKey("MemberId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Book");
+
+                    b.Navigation("Loan");
+
+                    b.Navigation("Member");
                 });
 
             modelBuilder.Entity("Library_Management_System.Models.Author", b =>
                 {
                     b.Navigation("Books");
+                });
+
+            modelBuilder.Entity("Library_Management_System.Models.Book", b =>
+                {
+                    b.Navigation("MemberLoans");
+                });
+
+            modelBuilder.Entity("Library_Management_System.Models.Category", b =>
+                {
+                    b.Navigation("Books");
+                });
+
+            modelBuilder.Entity("Library_Management_System.Models.Loan", b =>
+                {
+                    b.Navigation("Fines");
+
+                    b.Navigation("MemberLoans");
+                });
+
+            modelBuilder.Entity("Library_Management_System.Models.Member", b =>
+                {
+                    b.Navigation("MemberLoans");
                 });
 #pragma warning restore 612, 618
         }

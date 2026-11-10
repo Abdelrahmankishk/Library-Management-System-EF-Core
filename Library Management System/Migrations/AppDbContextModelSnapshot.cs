@@ -282,19 +282,19 @@ namespace Library_Management_System.Migrations
             modelBuilder.Entity("Library_Management_System.Models.MemberLoan", b =>
                 {
                     b.HasOne("Library_Management_System.Models.Book", "Book")
-                        .WithMany()
+                        .WithMany("MemberLoans")
                         .HasForeignKey("BookId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Library_Management_System.Models.Loan", "Loan")
-                        .WithMany()
+                        .WithMany("MemberLoans")
                         .HasForeignKey("LoanId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Library_Management_System.Models.Member", "Member")
-                        .WithMany()
+                        .WithMany("MemberLoans")
                         .HasForeignKey("MemberId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -311,6 +311,11 @@ namespace Library_Management_System.Migrations
                     b.Navigation("Books");
                 });
 
+            modelBuilder.Entity("Library_Management_System.Models.Book", b =>
+                {
+                    b.Navigation("MemberLoans");
+                });
+
             modelBuilder.Entity("Library_Management_System.Models.Category", b =>
                 {
                     b.Navigation("Books");
@@ -319,6 +324,13 @@ namespace Library_Management_System.Migrations
             modelBuilder.Entity("Library_Management_System.Models.Loan", b =>
                 {
                     b.Navigation("Fines");
+
+                    b.Navigation("MemberLoans");
+                });
+
+            modelBuilder.Entity("Library_Management_System.Models.Member", b =>
+                {
+                    b.Navigation("MemberLoans");
                 });
 #pragma warning restore 612, 618
         }

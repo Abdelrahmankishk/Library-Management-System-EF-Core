@@ -49,6 +49,10 @@ namespace Library_Management_System.Configurations
                     "[PhoneNumber] LIKE '01[0125][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]'");
             });
 
+            builder.HasMany(m => m.MemberLoans)
+                   .WithOne(ml => ml.Member)
+                   .HasForeignKey(ml => ml.MemberId)
+                   .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

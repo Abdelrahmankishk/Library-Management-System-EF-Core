@@ -36,5 +36,10 @@ public class BookConfigurations : IEntityTypeConfiguration<Book>
                .HasForeignKey(b => b.CategoryId)
                .OnDelete(DeleteBehavior.Restrict);
         #endregion
+
+        builder.HasMany(b => b.MemberLoans)
+               .WithOne(ml => ml.Book)
+               .HasForeignKey(ml => ml.BookId)
+               .OnDelete(DeleteBehavior.Cascade);
     }
 }

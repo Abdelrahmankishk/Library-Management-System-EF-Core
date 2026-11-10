@@ -17,4 +17,6 @@ public class Book : BaseEntity
     public Author Author { get; set; } = default!;
     public int CategoryId { get; set; }
     public Category Category { get; set; } = default!;
+
+    public ICollection<MemberLoan> MemberLoans { get; set; } = new HashSet<MemberLoan>();
 }

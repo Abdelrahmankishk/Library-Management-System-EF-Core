@@ -10,6 +10,7 @@ namespace Library_Management_System.Models;
 public class Loan : BaseEntity
 {
     public DateTime LoanDate { get; set; }
-    public LoanStatus Status { get; set; }
+    public LoanStatus Status { get; set; } = LoanStatus.Borrowed;
     public Fine? Fines { get; set; }
+    public ICollection<MemberLoan> MemberLoans { get; set; } = new HashSet<MemberLoan>();
 }

@@ -60,4 +60,56 @@ public static class LibraryService
             }
         }
     }
+
+
+    public static (bool Success, string Message) BorrowBook(AppDbContext context, int memberId, int bookId, int daysToReturn)
+    {
+        var member = context.Members.Find(memberId);
+        var book = context.Books.Find(bookId);
+        if (member is null || book is null)
+        {
+            return (false, "Member or Book not found.");
+        }
+        if(member.Status != Models.Enums.MemberStatus.Active)
+        {
+            return (false, "Member is Suspended");
+        }
+        if (book.AvailableCopies <= 0)
+        {
+            return (false, "No available copies of the book to borrow.");
+        }
+
+        var Loan = new Loan();
+        context.Loans.Add(Loan);
+
+        var memberLoan = new MemberLoan
+        {
+            MemberId = memberId,
+            Loan = Loan,
+            BookId = bookId,
+            DueDate = DateTime.Now.AddDays(daysToReturn)
+        };
+        context.MembersLoans.Add(memberLoan);
+        book.AvailableCopies--;
+
+        //    context.SaveChanges();
+        //    return (true, "Book borrowed successfully.");
+        //
+        var savedEntities = context.SaveChanges();
+
+        var savedMemberLoan = context.MembersLoans
+            .AsNoTracking()
+            .SingleOrDefault(x =>
+                x.LoanId == memberLoan.LoanId &&
+                x.BookId == memberLoan.BookId &&
+                x.MemberId == memberLoan.MemberId);
+
+        Console.WriteLine($"Saved entities: {savedEntities}");
+        Console.WriteLine($"Generated Loan ID: {memberLoan.LoanId}");
+        Console.WriteLine($"MemberLoan exists: {savedMemberLoan is not null}");
+
+        return savedMemberLoan is not null
+            ? (true, "Book borrowed successfully.")
+            : (false, "SaveChanges completed, but the MemberLoan row was not found.");
+    }
 }
