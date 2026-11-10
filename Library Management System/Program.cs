@@ -30,7 +30,7 @@ namespace Library_Management_System
             #endregion
 
             #region Member with id 1 Want To Borrow The Book With Id 2 And He Will Return it After 5 Days
-            var result = LibraryService.BorrowBook(dbContext, 6, 6, 5);
+            var result = LibraryService.BorrowBook(dbContext, 1, 4, 5);
             if (result.Success)
             {
                 Console.WriteLine(result.Message);
@@ -40,6 +40,19 @@ namespace Library_Management_System
                 Console.WriteLine($"Failed to borrow book: {result.Message}");
             }
             #endregion
+
+            #region 4. After 10 Days Member with id 1 Returned The Book
+            //var returnResult = LibraryService.ReturnBook(dbContext, 6, 6, DateTime.Now.AddDays(4));
+            //if (returnResult.Success)
+            //{
+            //    Console.WriteLine(returnResult.Message);
+            //}
+            //else
+            //{
+            //    Console.WriteLine($"Failed to return book: {returnResult.Message}");
+            //}
+            #endregion
+
         }
 
 
