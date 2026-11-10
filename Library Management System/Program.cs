@@ -30,18 +30,18 @@ namespace Library_Management_System
             #endregion
 
             #region Member with id 1 Want To Borrow The Book With Id 2 And He Will Return it After 5 Days
-            var result = LibraryService.BorrowBook(dbContext, 1, 4, 5);
-            if (result.Success)
-            {
-                Console.WriteLine(result.Message);
-            }
-            else
-            {
-                Console.WriteLine($"Failed to borrow book: {result.Message}");
-            }
+            //var result = LibraryService.BorrowBook(dbContext, 1, 4, 5);
+            //if (result.Success)
+            //{
+            //    Console.WriteLine(result.Message);
+            //}
+            //else
+            //{
+            //    Console.WriteLine($"Failed to borrow book: {result.Message}");
+            //}
             #endregion
 
-            #region 4. After 10 Days Member with id 1 Returned The Book
+            #region After 10 Days Member with id 1 Returned The Book
             //var returnResult = LibraryService.ReturnBook(dbContext, 6, 6, DateTime.Now.AddDays(4));
             //if (returnResult.Success)
             //{
@@ -53,6 +53,9 @@ namespace Library_Management_System
             //}
             #endregion
 
+            #region Retrieve all members who currently have active loans (i.e., loans that have not yet been returned)
+            LibraryService.RetrieveAllMembersWithLoans(dbContext);
+            #endregion 
         }
 
 

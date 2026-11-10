@@ -25,6 +25,7 @@ public static class LibraryService
                 CategoryName = b.Category.Title,
                 AuthorName = (b.Author.FirstName ?? "") + " " + (b.Author.LastName ?? "")
             })
+            .AsNoTracking()
             .ToList();
         
         if (books.Count == 0)
@@ -45,6 +46,7 @@ public static class LibraryService
     {
         var authors = context.Authors
             .Include(a => a.Books)
+            .AsNoTracking()
             .ToList();
         foreach (var author in authors)
         {
@@ -181,6 +183,26 @@ public static class LibraryService
         {
             transaction.Rollback();
             return (false, $"An error occurred while returning the book: {ex.Message}");
+        }
+    }
+
+
+    public static void RetrieveAllMembersWithLoans(AppDbContext context)
+    {
+        var members = context.MembersLoans.Where(ml => ml.ReturnDate == null)
+            .Include(m => m.Member)
+            .Include(m => m.Book)
+            .AsNoTracking()
+            .AsSplitQuery();
+
+        if (!members.Any())
+        {
+            Console.WriteLine("No members Have Any Active Loans");
+            return;
+        }
+        foreach (var memberLoan in members)
+        {
+            Console.WriteLine($"Member: {memberLoan.Member.Name}, Book: {memberLoan.Book.Title}, Due Date: {memberLoan.DueDate.ToShortDateString()}");
         }
     }
 
