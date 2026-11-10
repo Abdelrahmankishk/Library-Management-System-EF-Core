@@ -1,4 +1,5 @@
 ﻿using Library_Management_System.Context;
+using Library_Management_System.Services;
 
 namespace Library_Management_System
 {
@@ -19,6 +20,10 @@ namespace Library_Management_System
             {
                 Console.WriteLine("Data seeding failed or already exists.");
             }
+
+            #region Retrieve the book title, its category title , and the author’s full name for all books whose price is greater than 300.
+            LibraryService.RetrieveBooksGeaterThanPrice(dbContext, 300);
+            #endregion
         }
     }
 }
