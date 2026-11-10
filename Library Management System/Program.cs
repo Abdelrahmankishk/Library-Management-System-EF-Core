@@ -22,7 +22,11 @@ namespace Library_Management_System
             }
 
             #region Retrieve the book title, its category title , and the author’s full name for all books whose price is greater than 300.
-            LibraryService.RetrieveBooksGeaterThanPrice(dbContext, 300);
+            //LibraryService.RetrieveBooksGeaterThanPrice(dbContext, 300);
+            #endregion
+
+            #region Retrieve All Authors And His/Her Books if Exists
+            // LibraryService.RetrieveAllAuthorsAndBooks(dbContext);
             #endregion
         }
     }

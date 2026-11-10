@@ -39,5 +39,25 @@ public static class LibraryService
                 Console.WriteLine($"    Title: {book.Title}, Price: {book.Price} EGP, Category: {book.CategoryName}, Author: {book.AuthorName}");
             }
         }
+    }
+
+    public static void RetrieveAllAuthorsAndBooks(AppDbContext context)
+    {
+        var authors = context.Authors
+            .Include(a => a.Books)
+            .ToList();
+        foreach (var author in authors)
+        {
+            Console.WriteLine($"Author: {author.FirstName} {author.LastName}, DOB: {author.DateOfBirth.ToShortDateString()}");
+            if (author.Books.Count == 0)
+            {
+                Console.WriteLine("    No books found for this author.");
+                continue;
+            }
+            foreach (var book in author.Books)
+            {
+                Console.WriteLine($"    Book: {book.Title}, Price: {book.Price} EGP, Available Copies: {book.AvailableCopies}, Total Copies: {book.TotalCopies}, Published Year: {book.PublicationYear}");
+            }
         }
+    }
 }
