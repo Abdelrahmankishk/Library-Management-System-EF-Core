@@ -15,5 +15,5 @@ public class MemberLoan
     public int MemberId { get; set; }
     public Member? Member { get; set; }
     public DateTime DueDate { get; set; }
-    public DateTime ReturnDate { get; set; }
+    public DateTime? ReturnDate { get; set; }
 }

@@ -13,7 +13,7 @@ public class AuthorConfigurations : IEntityTypeConfiguration<Author>
 {
     public void Configure(EntityTypeBuilder<Author> builder)
     {
-        builder.Property(X => X.FristName)
+        builder.Property(X => X.FirstName)
                   .HasColumnType("varchar")
                   .HasMaxLength(20);
 

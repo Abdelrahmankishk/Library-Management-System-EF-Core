@@ -7,7 +7,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Library_Management_System
+namespace Library_Management_System.Context
 {
     public class AppDbContext : DbContext
     {
@@ -26,5 +26,6 @@ namespace Library_Management_System
         public DbSet<Member> Members { get; set; }
         public DbSet<Loan> Loans { get; set; }
         public DbSet<Fine> Fines { get; set; }
+        public DbSet<MemberLoan> MembersLoans { get; set; }
     }
 }

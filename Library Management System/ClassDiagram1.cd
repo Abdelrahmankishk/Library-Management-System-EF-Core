@@ -1,52 +1,59 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="Library_Management_System.Models.Author" Collapsed="true">
+  <Class Name="Library_Management_System.Models.Author">
     <Position X="2" Y="3.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAACAAg=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAgAAQAAAAAAAAAAACAAg=</HashCode>
       <FileName>Models\Author.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Library_Management_System.Models.BaseEntity" Collapsed="true">
-    <Position X="7.5" Y="2" Width="1.5" />
+  <Class Name="Library_Management_System.Models.BaseEntity">
+    <Position X="7.5" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Models\BaseEntity.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Library_Management_System.Models.Book" Collapsed="true">
+  <Class Name="Library_Management_System.Models.Book">
     <Position X="11" Y="3.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAQAAAEAAAAAIQAAAAAAAAAAQAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAQAAAkAAgAAIQAAAAAAAAAAQABAAAAAACAA=</HashCode>
       <FileName>Models\Book.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Library_Management_System.Models.Category" Collapsed="true">
+  <Class Name="Library_Management_System.Models.Category">
     <Position X="4.25" Y="3.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAgAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAgAEAAAAAAAAAAgAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Models\Category.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Library_Management_System.Models.Fine" Collapsed="true">
+  <Class Name="Library_Management_System.Models.Fine">
     <Position X="8.75" Y="3.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAEBAAAAAAAAAAAAACAAAAAAAAABAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAgAEBAAAAAAAAAAAAACAAAAAAAAABABAAAAAAAA=</HashCode>
       <FileName>Models\Fine.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Library_Management_System.Models.Loan" Collapsed="true">
+  <Class Name="Library_Management_System.Models.Loan">
     <Position X="13.25" Y="3.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAEAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAEAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAIA=</HashCode>
       <FileName>Models\Loan.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Library_Management_System.Models.Member" Collapsed="true">
+  <Class Name="Library_Management_System.Models.Member">
     <Position X="6.5" Y="3.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAEACIAAAAAAAAAQAQAAAAAAAACAAAAAAAAAAA=</HashCode>
       <FileName>Models\Member.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Library_Management_System.Models.MemberLoan">
+    <Position X="15.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAACgAAAAAAACBAAAAAAQAAAAAIAAAAAABAAAAAAAA=</HashCode>
+      <FileName>Models\MemberLoan.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Enum Name="Library_Management_System.Models.Enums.FineStatus" Collapsed="true">
